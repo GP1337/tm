@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Мои задачи</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Задачи</th>
+            <th/>
+        </tr>
+        </tr>
+        </tr>
+        </thead>
+        <tbody>
+        <td>
+            <a th:href="@{'/tasks/taskDetail'}" th:text="Добавить"/>
+        </td>
+        <td/>
+        <td/>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.title}"/>
+            <td th:text="${task.description}"/>
+            <td>
+                <a th:href="@{'/tasks/taskDetail?id=' + ${task.id}}" th:text="Просмотреть"/>
+            </td>
+            <td>
+                <form style="display:none" th:action="@{'/tasks/completeTask'}" method="post">
+                    <button type="submit" id="button_to_link" th:name="id" th:value="${task.id}" class="link-button">
+                    </button>
+                </form>
+                <label stlye="color: blue" for="button_to_link">Завершить</label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
